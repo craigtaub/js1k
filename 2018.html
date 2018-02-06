@@ -60,7 +60,7 @@
         </h1>
         <p>
           <em>
-            A tribute to my favourite film (via snow, atom particles and the comedians badge).
+            A mixture of snow, particles and of course the comedians badge.
           </em>
         </p>
         <aside>
@@ -138,6 +138,7 @@
       // document.write('see console');
       // console.log('demo here', window.a, b, window.c, window.g, window.d);
       
+      /* FULL CODE
         // global EVERYTHING
         MR = Math.random;
         MI=()=>Math.PI * 2
@@ -163,16 +164,15 @@
         B=(x, y, dx, dy, r)=>{
           var cr = crA[~~(MR() * 2)]; 
           // colour. needs var. * crA.length. dbl bitwise shorthand over Math.floor
-          return {
-            dw:()=>{ // draw
-              c = bp(c, cr); // begins a new path, of resets current one
-              c.arc(x, y, r, 0, MI(), false);
-              c.fill();
-            },
-            ud:()=>{ // update
-              x+= dx; // left/right
-              y+= dy; // up/down
-            }
+          return ()=>{ 
+            // update
+            x+= dx; // left/right
+            y+= dy; // up/down
+
+            // draw
+            c = bp(c, cr); // begins a new path, of resets current one
+            c.arc(x, y, r, 0, MI(), false);
+            c.fill();
           } 
         }
         // Animate particles
@@ -226,7 +226,7 @@
           //for (_ of cA) { // wont work
           for (i = 1; i < cA.length; i++) { 
           // run loop X many times, every single second
-            cA[i].ud(),cA[i].dw();
+            cA[i]();
           }
         }
         
@@ -253,14 +253,11 @@
         }
 
         C();
+        */
         
-        // reset:
-      /*setInterval(() => { 
-        console.log('reset')
-        bX = xS;  
-        bY = yS; 
-        F(); //E(); // D()
-      }, 1000); */
+
+        // MINIFIED 994 bytes
+        // for(MR=Math.random,MI=(()=>2*Math.PI),cht=innerHeight,cwh=innerWidth,S=(c=>c.stroke()||c),bp=((c,e)=>(c.beginPath(),e&&(c.fillStyle=e),c)),d=3,np=cht*cwh/(100*d),cA=[],crA=["#00f","#6f77ec"],B=((e,r,t,i,l)=>{var y=crA[~~(2*MR())];return()=>{e+=t,r+=i,c=bp(c,y),c.arc(e,r,l,0,MI(),!1),c.fill()}}),C=(()=>{for(requestAnimationFrame(C),c.fillStyle="black",c.fillRect(0,0,cwh,cht),r=150,eR=20,mA=90,c=bp(c,"yellow"),c.arc(cX,cY,r,0,MI(),!1),c.fill(),c.lineWidth=5,c.strokeStyle="black",c=S(c),c=bp(c,"black"),c.arc(eyX,eyY,eR,0,MI(),!1),eT=cX+eX,c.arc(eT,eyY,eR,0,MI(),!1),c.fill(),c=bp(c),c.arc(cX,cY,mA,0,Math.PI,!1),c=S(c),xL=xS+100,yL=yS+100,bX!=xL&&bX++,bY!=yL&&bY++,c=bp(c),c.lineWidth=10,c.strokeStyle="#A00",c.moveTo(xS,yS),c.arc(bX,bY,3,0,MI()),c=S(c),i=1;i<cA.length;i++)cA[i]()}),eX=55,cY=cht/2,cX=cwh/2,eyX=cX-eX,eyY=cY-eX,xS=eyX-50,yS=eyY-50,bX=xS,bY=yS,cA=[],X=(()=>.5*(MR()-.5)),Y=(c=>MR()*(c-2*r)),i=1;i<np;i++)r=3*MR()+1,x=Y(cwh),y=Y(cht),dx=X(),dy=X(),cA.push(B(x,y,dx,dy,r));C();
       
       // END
     </script>
