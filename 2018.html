@@ -161,8 +161,8 @@
         
         // Particle Circles
         B=(x, y, dx, dy, r)=>{
-          col = "#6f77ec"; // USE 1 COLOUR
-          var cr = crA[Math.floor(MR() * crA.length)]; // colour. needs var    
+          var cr = crA[~~(MR() * 2)]; 
+          // colour. needs var. * crA.length. dbl bitwise shorthand over Math.floor
           return {
             dw:()=>{ // draw
               c = bp(c, cr); // begins a new path, of resets current one
@@ -210,8 +210,8 @@
           // DOESNT SEEM NEEDED ANYMORE
           xL = xS + 100, // xLimit
               yL = yS + 100; // yLimit
-          if (bX !== xL) bX++;
-          if (bY !== yL) bY++;
+          if (bX != xL) bX++;
+          if (bY != yL) bY++;
           
           // Animate blood 2
           c = bp(c);
@@ -222,7 +222,9 @@
           c=S(c); // Draw it
 
           // update + redraw
-          for (i = 1; i < cA.length; i++) { // run loop X many times, every single second
+          //for (_ of cA) { // wont work
+          for (i = 1; i < cA.length; i++) { 
+          // run loop X many times, every single second
             cA[i].ud(),cA[i].dw();
           }
         }
