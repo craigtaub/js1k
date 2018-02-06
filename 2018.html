@@ -138,11 +138,14 @@
       // document.write('see console');
       // console.log('demo here', window.a, b, window.c, window.g, window.d);
       
+        // global EVERYTHING
         MR = Math.random;
         MI=()=>Math.PI * 2
         cht = innerHeight; // c height
         cwh = innerWidth; // c width
-        S=(c)=> c.stroke() || c; // run function + return value
+        S=(c)=> c.stroke() || c;
+        // run function + return value. ONLY if stroke() returns falsy.
+        // assignments are truthly unless assigned value is falsey
         bp=(c, fill)=>{
           c.beginPath();
           if (fill) {
