@@ -82,7 +82,6 @@
 
     <script type="shim">
       // this is the SHIM (will be ran in the context of the iframe...)
-
       // unprefix some popular vendor prefixed things (but stick to their original name)
       iwin.AudioContext = iwin.AudioContext || iwin.webkitAudioContext; // ios8 unmutes audio only during the first user triggered event with sound
       iwin.requestAnimationFrame = iwin.requestAnimationFrame || iwin.mozRequestAnimationFrame || iwin.webkitRequestAnimationFrame || iwin.msRequestAnimationFrame || function(f){ iwin.setTimeout(f, 1000/30); };
@@ -92,18 +91,15 @@
         OscillatorNode.prototype.start = OscillatorNode.prototype.start || OscillatorNode.prototype.noteOn;
         OscillatorNode.prototype.stop = OscillatorNode.prototype.stop || OscillatorNode.prototype.noteOff;
       }
-
       a = canvas;
       b = idoc.body;
       d = idoc.document;
-
       if (!TOKEN_WEBGL) iwin.c = canvas.getContext('2d');
       else iwin.g = (function () {
         iwin.onorientationchange = iwin.onresize = null;
         try {
           var o = { antialias: true, stencil: true };
           var gl = canvas.getContext('webgl', o) || canvas.getContext('experimental-webgl', o);
-
           // keep in scope, must not be garbage collected
           iwin.__glExts =
             [ 'OES_texture_float', 'OES_texture_float_linear', 'OES_standard_derivatives',
@@ -117,13 +113,11 @@
           iwin.a=iwin.b=iwin.c=iwin.d=null;
           throw e;
         }
-
         return gl;
       })();
     </script>
     <script>
       // submission form configurables:
-
       // enable canvas shim at all? (2d/3d). other settings are ignored if this is false.
       var TOKEN_CANVAS_SHIM = true;
       // true enables webgl shim (exposes `g`), false enables canvas shim (exposes `c`)
@@ -160,15 +154,15 @@
         np = cht * cwh / (d * 100);  // np
         // changes number of particles based on screen size.
         cA = []; // circle array
-        // crA = ["#6f77ec"]; // color array
+        crA = ["#00f", "#6f77ec"]; // color array
         
         // Particle Circles
         B=(x, y, dx, dy, r)=>{
           col = "#6f77ec"; // USE 1 COLOUR
-          // col = crA[Math.floor(MR() * crA.length)]; // colour 
+          var cr = crA[Math.floor(MR() * crA.length)]; // colour. needs var    
           return {
             dw:()=>{ // draw
-              c = bp(c, col); // begins a new path, of resets current one
+              c = bp(c, cr); // begins a new path, of resets current one
               c.arc(x, y, r, 0, MI(), false);
               c.fill();
             },
@@ -193,11 +187,9 @@
           requestAnimationFrame(C); // recursively runs, which keeps particles animating. RUNS 60 times ps
           //c.clearRect(0, 0, cwh, cht); // without particles fuse into 1. clears current one before writing next
           // NOT NEEDED ANYMORE
-
           // Set background colour
           c.fillStyle = "black";
           c.fillRect(0, 0, cwh, cht);
-
           // Draw Face 
           r = 150,
             eR = 20, // eye Radius
@@ -227,9 +219,7 @@
               yL = yS + 100; // yLimit
           if (bX !== xL) bX++;
           if (bY !== yL) bY++;
-
           F();
-
           for (i = 1; i < cA.length; i++) { // run loop X many times, every single second
             cA[i].ud(),cA[i].dw();
           }
@@ -255,11 +245,9 @@
           c.arc(bX, bY, 3, 0, MI()); // last point with arc
           c=S(c); // Draw it
         }
-
         // PROGRAM:
         I();
         C();
-
         // reset:
       /*setInterval(() => { 
         console.log('reset')
