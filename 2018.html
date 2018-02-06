@@ -24,7 +24,7 @@
   help="please report csp-related problems to valid demos!"
 >
 
-    <title>JS1k 2018 - Craig Taub - My Tribute to Watchmen</title>
+    <title>JS1k 2018 - Craig Taub - Watchmen Tribute</title>
     <meta name="author" content="YOU">
     <link rel="icon" type="image/png" href="https://js1k.com/favicon.png">
     <link rel="canonical" href="https://js1k.com/2018-coins/demo/NNNN">
@@ -60,7 +60,7 @@
         </h1>
         <p>
           <em>
-            A tribute to my favourite film.
+            A tribute to my favourite film (via snow, atom particles and the comedians badge).
           </em>
         </p>
         <aside>
@@ -71,7 +71,7 @@
           &mdash;
           <a href="https://js1k.com/2018-coins/demos">list of demos</a>
           &mdash;
-          <a href="https://js1k.com/NNNN" title="short link for your mobile devices" rel="nofollow">js1k.com/NNNN</a>
+          <a href="https://js1k.com/NNNN" title="short link for your mobile devices" rel="nofollow">js1k.com/WATCHMEN-TRIBUTE</a>
           <time datetime="NOW" pubdate>NOW</time>
         </aside>
       </div>
@@ -172,16 +172,6 @@
             }
           } 
         }
-        // Initialise particles array
-        I=()=>{
-          cA = [];
-          X=()=>(MR() - 0.5) * 0.5;
-          Y=(z)=>MR() * (z - r * 2)
-          for (i = 1; i < np; i++) {
-            r = MR() * 3 + 1, x = Y(cwh), y = Y(cht), dx = X(), dy = X();
-            cA.push(B(x, y, dx, dy, r));
-          }
-        }
         // Animate particles
         C=()=>{
           requestAnimationFrame(C); // recursively runs, which keeps particles animating. RUNS 60 times ps
@@ -219,7 +209,16 @@
               yL = yS + 100; // yLimit
           if (bX !== xL) bX++;
           if (bY !== yL) bY++;
-          F();
+          
+          // Animate blood 2
+          c = bp(c);
+          c.lineWidth=10;
+          c.strokeStyle="#A00";
+          c.moveTo(xS, yS); // starting point to coords
+          c.arc(bX, bY, 3, 0, MI()); // last point with arc
+          c=S(c); // Draw it
+
+          // update + redraw
           for (i = 1; i < cA.length; i++) { // run loop X many times, every single second
             cA[i].ud(),cA[i].dw();
           }
@@ -232,22 +231,23 @@
           eyX = cX - eX, // eye
           eyY = cY - eX; // eye
         
-        // blood spatter
+        // Initialise blood spatter
         xS = eyX - 50, // xStart
             yS = eyY - 50, // yStart
             bX = xS, // bloodToX
             bY = yS; // bloodToY
-        F=()=>{
-          c = bp(c);
-          c.lineWidth=10;
-          c.strokeStyle="#A00";
-          c.moveTo(xS, yS); // starting point to coords
-          c.arc(bX, bY, 3, 0, MI()); // last point with arc
-          c=S(c); // Draw it
+
+        // Initialise particles array
+        cA = [];
+        X=()=>(MR() - 0.5) * 0.5;
+        Y=(z)=>MR() * (z - r * 2)
+        for (i = 1; i < np; i++) {
+          r = MR() * 3 + 1, x = Y(cwh), y = Y(cht), dx = X(), dy = X();
+          cA.push(B(x, y, dx, dy, r));
         }
-        // PROGRAM:
-        I();
+
         C();
+        
         // reset:
       /*setInterval(() => { 
         console.log('reset')
