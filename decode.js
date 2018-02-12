@@ -1,32 +1,20 @@
-var jsLimit = 32; // 32-bit integer
 
 var slimResult = 'mk8w';
 
-var puzzleEncoded = parseInt(slimResult, 36);
+var puzzleEncoded = parseInt(slimResult, 36); // base 36 decode
 
-//--- Masks ---//
-var masks = []
-for(var i=0; i < jsLimit; i++) {
-  masks.push(1 << i)
-}
+getX = (v) => v % 8;
+getY = (v) => v >> 3; // Math.floor(p / 8).
 
-//--- Matches ---//
-const positions = [];
-for(var i=0; i < 32; i++) {
-  if ((puzzleEncoded & masks[i]) === masks[i]) {
+var positions = [];
+for(i=0;i<32;i++) { // max 32-bit int
+if ((puzzleEncoded & 1<<i) === 1<<i) {
     positions.push(i);
   }
 }
 
-// Grid 
-positions.forEach(item => {
-  console.log(`Index=${item}, X=${getX(item)}, Y=${getY(item)}`);
+// Index-Grid positions
+positions.forEach(index => {
+  console.log(`Index=${index}, X=${getX(index)}, Y=${getY(index)}`);
 });
 
-function getX(value) {
-  return value % 8;
-}
-
-function getY(value) {
-  return value >> 3 // Math.floor(p / 8).
-}
