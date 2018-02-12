@@ -50,6 +50,7 @@ parseInt("19r", 36) = 1647
 SO:
 - extracting the bit Y * Z + X
 - NO BIT SHIFTING OCCURING
+- BUT exponential calculation i think does measure them
 
 ===
 
@@ -95,49 +96,3 @@ Storing multiple values in 1 number:
   - (encoded & D_A) === D_A
 - how many values to store? in JS 32-bit ints so max is 32 values.
 - http://blog.millermedeiros.com/using-integers-to-store-multiple-boolean-values/
-
-Example:
-//--- SETUP ---//
-/*
-- 32 position grid. 8x4
-- 0 indexed
-- can leave X+Y calc until drawing part
-- x = p % 8
-- y = p >> 3 // Math.floor(p / 8).
-e.g. (A)
---------
-----X---
-----X---
---------
-- index points 12 and 20
-*/
-
-//--- Masks ---//
-var one = 1 << 0; //1
-var two = 1 << 1; //2
-var four = 1 << 2; //4
-var eight = 1 << 3; //8
-var sixteen = 1 << 4; //16
-var thirtytwo = 1 << 5; //32
-
-//--- Sets ---//
-var twenty = sixteen | four; // 16+4
-var twelve = eight | four; // 8+4
-// NOTE above arent real numbers + will flag 4,8,16 on result.
-var level1 = twelve | twenty; 
-// each level item is an x/y position.
-// | is add, ^ is remove
-
-//--- Matches ---//
-console.log(level1 & one);
-console.log(level1 & two);
-console.log(level1 & four);
-console.log(level1 & eight);
-console.log(level1 & twelve);
-console.log(level1 & sixteen);
-console.log(level1 & twenty);
-console.log(level1 & thirtytwo);
-// prints 0,0,4,8,12,16,20,0
-// SO includes everything that makes them up. too much info.
-// GOOD for expanding permissions, including everything below that number.
-// BUT I WANT just 12 + 20
