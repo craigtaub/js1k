@@ -5,17 +5,22 @@ var puzzleEncoded = parseInt(slimResult, 36); // base 36 decode
 
 var positions = [];
 for(i=0;i<32;i++) { // max js 32-bit int
-  if ((puzzleEncoded & 1<<i) === 1<<i) {
+  if (puzzleEncoded & 1<<i) { // see encode.js
+    // does given encoded matched current i when its encoded 
     positions.push(i);
   }
 }
+/*
+HOW does it not get confused if 2 bits signed for 1 number e.g. 7?
+*/
+
 
 // // X/Y coords of grid
 // getX = (v) => v % 8;
 // getY = (v) => v >> 3; // Math.floor(p / 8).
 // // Index-Grid positions
 // positions.forEach(index => {
-//   console.log(`Index=${index}, X=${getX(index)}, Y=${getY(index)}`);
+//   console.log(`Index=${index}`); //, X=${getX(index)}, Y=${getY(index)}`);
 // });
 
 // draw grid, not 0-indexed
