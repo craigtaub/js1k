@@ -23,7 +23,7 @@ var blackSquare = 7, blackSquareA = 12, blackSquareB = 20,
 /*
 NOTES:
 each index, is an x/y position + an exponent of 2.
-if above 32 starts losing accuracy (e.g. adds 3)
+doesnt work if >= 32 (32-bit max js integer)
 | is add, ^ is remove
 2's compliment is the MASK (1<<X)
 */
@@ -52,7 +52,7 @@ IS base36 worth it?
 hra0m8 = 6 bytes (saves 4 bytes or 32-bits)
 */
 
-/* COMPRESSION
+/* ENCODING/COMPRESSION
 1. several numbers stored in 1 long number
 2. base36 encoding that number
 */

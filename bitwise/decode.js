@@ -22,9 +22,9 @@ BECAUSE its exponential so only flips 1 bit per grid location.
 // getX = (v) => v % 8;
 // getY = (v) => v >> 3; // Math.floor(p / 8).
 // // Index-Grid positions
-// positions.forEach(index => {
-//   console.log(`Index=${index}`); //, X=${getX(index)}, Y=${getY(index)}`);
-// });
+positions.forEach(index => {
+  console.log(`Index=${index}`); //, X=${getX(index)}, Y=${getY(index)}`);
+});
 
 // draw grid, not 0-indexed
 var line = '';
