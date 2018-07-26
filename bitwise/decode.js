@@ -11,7 +11,10 @@ for(i=0;i<32;i++) { // max js 32-bit int
   }
 }
 /*
-HOW does it not get confused if 2 bits signed for 1 number e.g. 7?
+HOW does it not get confused if 2 bits signed for 1 number e.g. 7 + 11 (both need 1+2)?
+BECAUSE its exponential so only flips 1 bit per grid location.
+1 << 7 !== 0111
+1 << 7 === 10000000
 */
 
 

@@ -1,3 +1,13 @@
+/* 
+TWOS COMPLIMENT:
+- of an N-bit number is defined as its complement with respect to 2(power of)N
+
+EXPONENTIAL:
+- repeatedly do something on itself
+- "to the power of"
+- "4 to power of 2" is 2*2*2*2
+*/
+
 /* GRID
 - 32 position (8x4) central grid (32-bit max js integer).
 - grid can be ANY size, centre is 8x4
@@ -12,9 +22,7 @@ var blackSquare = 7, blackSquareA = 12, blackSquareB = 20,
 
 /*
 NOTES:
-each index:
- - is an x/y position.
- - is an exponent of 2 (i.e. index 3 is 2*2*2) i.e. TWO's COMPLIMENT
+each index, is an x/y position + an exponent of 2.
 if above 32 starts losing accuracy (e.g. adds 3)
 | is add, ^ is remove
 2's compliment is the MASK (1<<X)
